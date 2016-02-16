@@ -17,7 +17,12 @@ app.get('/', function (req, res) {
             return console.error(err);
         }
 
-        res.send(header + marked(data.toString()) + footer);
+
+        //res.send(src.split('\n'))
+        res.send(result.join('\n'))
+
+
+        //res.send(header + marked(data.toString()) + footer);
         console.log("异步读取: " + data.toString());
     });
 });

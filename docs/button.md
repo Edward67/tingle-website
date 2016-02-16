@@ -2,6 +2,7 @@
 
 效果图:
 
+<img src="https://img.alicdn.com/tps/TB10cIXJpXXXXbaXXXXXXXXXXXX-750-1254.png" width="375"/>
 
 ## Simple Usage
 
