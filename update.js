@@ -2,13 +2,15 @@
  * Created by edward67 on 16/2/15.
  */
 var fs = require("fs");
+var jade = require('jade');
 var https = require("https");
 var express = require('express');
 var marked = require('marked');
 
-var app = express();
-
 var catchList = [{
+    name: 'grid',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-grid/master/README.md'
+},{
     name: 'tab',
     url: 'https://raw.githubusercontent.com/tinglejs/tingle-tab/master/README.md'
 }, {
@@ -31,7 +33,8 @@ function download(url, callback) {
     });
 }
 
-function init() {
+//curl();
+function curl() {
     var nums = 0;
 
     // 抓取catchList的数据
@@ -43,22 +46,20 @@ function init() {
                     if (e) throw e;
                     fs.closeSync(fd);
                     if (++nums >= catchList.length) {
-                        packaging()
+                        handleMarkdown()
                     }
-                })
+                });
+                console.log(item.name + ' done');
             });
-            console.log(item.name + ' done')
+
         })
     })
-
-
 }
 
+handleMarkdown()
 
-//init();
-packaging()
-// 生成页面
-function packaging() {
+// 处理markdown
+function handleMarkdown() {
 
     var nums = 0;
     // 过滤文档
@@ -75,63 +76,73 @@ function packaging() {
 
             src.map(function (item) {
                 if (isContinuity) {
-
-                    if (item.slice(0, 13) == '## Links 相关链接') {
+                    if (item.slice(0, 4) == '<img') {
+                        isContinuity = false;
+                        return;
+                    } else if (item.slice(0, 10) == '## Install') {
+                        isContinuity = false;
+                        return;
+                    } else if (item.slice(0, 17) == '## Simple Usage') {
+                        isContinuity = false;
+                        return;
+                    } else if (item.slice(0, 8) == '## Links') {
                         isContinuity = false;
                         return;
                     }
                     result.push(item)
-
                 } else {
                     if (item.slice(0, 2) == '# ') {
                         result.push(item);
-                        result.push('');
-                    } else if (item.slice(0, 15) == '## Simple Usage') {
+                        isContinuity = true;
+                    } else if (item.slice(0, 8) == '## Props') {
                         result.push(item);
                         isContinuity = true;
-                    } else if (item.slice(0, 7) == '## 可用配置') {
+                    } else if (item.slice(0, 8) == '## Event') {
                         result.push(item);
                         isContinuity = true;
                     }
-
-
                 }
-
             })
-
             resultMap[item.name] = result.join('\n');
             if (++nums >= catchList.length) {
-                next()
+                saveDocs()
             }
-
-
-            //res.send(src.split('\n'))
-            //res.send(result.join('\n'))
-
-
-            //res.send(header + marked(data.toString()) + footer);
-            //console.log("异步读取: " + data.toString());
         });
     })
 }
 
 // save
-function next() {
-    var html = [];
-    catchList.map(function(item) {
-        html.push(resultMap[item.name])
+function saveDocs() {
+    var md = [];
+    var res = [];
+    catchList.map(function (item) {
+        md.push(resultMap[item.name])
     })
 
     var header = fs.readFileSync('tpl/header.html'),
         footer = fs.readFileSync('tpl/footer.html');
 
-    fs.open("dist/index.html", "w", 0644, function (e, fd) {
+    //res.push(header);saqw
+
+    res.push(jade.renderFile('./tpl/docs.jade', {
+        catchList: catchList,
+        md: marked(md.join('\n'))
+    }));
+
+    //console.log(111);
+    //console.log(marked(md.join('\n')))
+
+    //res.push(marked(md.join('\n')));
+
+    //res.push(footer);
+
+    fs.open("dist/docs.html", "w", 0644, function (e, fd) {
         if (e) throw e;
-        fs.write(fd, header + marked(html.join('\n')) + footer, 0, 'utf8', function (e) {
+        fs.write(fd, res.join(''), 0, 'utf8', function (e) {
             if (e) throw e;
             fs.closeSync(fd);
 
         })
     });
-    //console.log(resultMap)
+    //console.log(resultMap)w
 }

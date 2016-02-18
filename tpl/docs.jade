@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title Tingle - docs
+        link(rel="stylesheet", type="text/css" href="../asset/css/markdown.css")
+        link(rel="stylesheet", type="text/css" href="../asset/css/docs.css")
+    body.markdown-body
+        div.wrap
+            aside.sidebar
+                nav
+                    each item,index in catchList
+                        a(href="\##{item.name}") #{item.name}
+            main.content
+                !=md

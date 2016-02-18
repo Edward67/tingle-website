@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><title>Tingle - docs</title><link rel="stylesheet" type="text/css" href="../asset/css/markdown.css"><link rel="stylesheet" type="text/css" href="../asset/css/docs.css"></head><body class="markdown-body"><div class="wrap"><aside class="sidebar"><nav><a href="#grid">grid</a><a href="#tab">tab</a><a href="#button">button</a></nav></aside><main class="content"><h1 id="tingle-grid-npm-version-https-badge-fury-io-js-tingle-grid-svg-http-badge-fury-io-js-tingle-grid-">tingle-grid <a href="http://badge.fury.io/js/tingle-grid"><img src="https://badge.fury.io/js/tingle-grid.svg" alt="npm version"></a></h1>
+<p>一句话描述一句话描述一句话描述一句话描述一句话描述一句话描述一句话描述</p>
+<h2 id="props">Props</h2>
+<h4 id="classname">className</h4>
+<p>描述：自定义样式的<code>class</code>名称。<br>类型：<code>String</code><br>默认：<code>&#39;&#39;</code><br>必选：否</p>
+<p>示例：</p>
+<pre><code>&lt;Grid className=&quot;customClass&quot;&gt;&lt;/Grid&gt;
+</code></pre><h4 id="col">col</h4>
+<p>描述：自定义列数，如果子元素不足整列，将以空元素补位。<br>类型：<code>Number</code><br>默认：<code>4</code><br>必选：否</p>
+<p>示例1：下面的代码将显示成一行三列，即使子元素不足三个。</p>
+<pre><code>&lt;Grid col={3}&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/Grid&gt;
+</code></pre><p>示例2：下面的代码将显示两行三列，即使子元素不足两行。</p>
+<pre><code>&lt;Grid col={3}&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/Grid&gt;
+</code></pre><h2 id="event">Event</h2>
+<h4 id="onchange-newvalue-e-">onChange(newValue, e)</h4>
+<p>描述：输入时触发。
+类型：<code>Number</code><br>默认：<code>4</code><br>必选：</p>
+<p>示例1：下面的代码将显示成一行三列，即使子元素不足三个。</p>
+<pre><code class="lang-javascript">// 新值和事件对象
+handleChange(newValue,e) {
+
+}
+</code></pre>
+<h4 id="onfocus-e-">onFocus(e)</h4>
+<h4 id="onblur-e-">onBlur(e)</h4>
+<h1 id="tab-npm-version-https-badge-fury-io-js-tingle-tab-svg-http-badge-fury-io-js-tingle-tab-">Tab <a href="http://badge.fury.io/js/tingle-tab"><img src="https://badge.fury.io/js/tingle-tab.svg" alt="npm version"></a></h1>
+<p>标签切换控件</p>
+<h1 id="button-npm-version-https-badge-fury-io-js-tingle-button-svg-http-badge-fury-io-js-tingle-button-">Button 按钮 <a href="http://badge.fury.io/js/tingle-button"><img src="https://badge.fury.io/js/tingle-button.svg" alt="npm version"></a></h1>
+<p>效果图:</p>
+</main></div></body></html>
