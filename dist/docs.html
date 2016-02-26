@@ -1,37 +1,470 @@
-<!DOCTYPE html><html><head><title>Tingle - docs</title><link rel="stylesheet" type="text/css" href="../asset/css/markdown.css"><link rel="stylesheet" type="text/css" href="../asset/css/docs.css"></head><body class="markdown-body"><div class="wrap"><aside class="sidebar"><nav><a href="#grid">grid</a><a href="#tab">tab</a><a href="#button">button</a></nav></aside><main class="content"><h1 id="tingle-grid-npm-version-https-badge-fury-io-js-tingle-grid-svg-http-badge-fury-io-js-tingle-grid-">tingle-grid <a href="http://badge.fury.io/js/tingle-grid"><img src="https://badge.fury.io/js/tingle-grid.svg" alt="npm version"></a></h1>
-<p>一句话描述一句话描述一句话描述一句话描述一句话描述一句话描述一句话描述</p>
+<!DOCTYPE html><html><head><title>Tingle - docs</title><link rel="stylesheet" type="text/css" href="../asset/css/markdown.css"><link rel="stylesheet" type="text/css" href="//g.alicdn.com/platform/common/s/1.1/global/global.css"><link rel="stylesheet" type="text/css" href="../asset/css/docs.css"></head><body class="markdown-body"><div class="wrap"><aside class="sidebar"><nav><a href="./index.html" class="to-index"><i class="kuma-icon kuma-icon-restart">Back</i></a><a href="#context">context</a><a href="#style">style</a><a href="#icon">icon</a><a href="#slot">slot</a><a href="#collection">collection</a><a href="#box">box</a><a href="#group">group</a><a href="#slide">slide</a><a href="#avatar">avatar</a><a href="#tab">tab</a><a href="#rate">rate</a><a href="#button">button</a><a href="#on-off">on-off</a><a href="#time">time</a><p>Created By<img src="http://uxco.re/static/iux.png"></p><p class="small">阿里巴巴信息平台 UED 团队</p></nav></aside><main class="content"><div id="context"></div><div id="style"><h1 id="tingle-style">tingle-style</h1>
+<p><code>tingle-style</code>是<code>tingle</code>的底层样式实现方案，包括两个部分的实现：</p>
+<h4 id="css">CSS</h4>
+<ul>
+<li>reset：即样式重置，部分功能不需要在组件中手动调用和处理，对下面文档中提到的几个关键点知晓即可。</li>
+<li>flexbox + util：以局部样式声明为粒度的通用样式切片，注意，这里的粒度不是组件级别的。详见下面的文档。</li>
+<li>var：<code>stylus</code>的辅助样式函数</li>
+</ul>
+<h4 id="js">JS</h4>
+<ul>
+<li>util.js：通过<code>js</code>操作样式的辅助函数</li>
+</ul>
+<h2 id="css-reset">CSS Reset</h2>
+<blockquote>
+<p>文件：<a href="https://github.com/tinglejs/tingle-style/blob/master/src/reset.styl">reset.styl</a></p>
+</blockquote>
+<h4 id="border-box-">border box：</h4>
+<ul>
+<li>默认<strong>所有元素</strong>的盒模型类型为<strong><code>border-box</code></strong></li>
+</ul>
+<h4 id="list-style-">list style：</h4>
+<ul>
+<li>列表元素<code>ul</code>和<code>ol</code>的样式默认为<code>none</code>值。</li>
+</ul>
+<h4 id="input-textarea">input, textarea</h4>
+<ul>
+<li>消除输入框和按钮的原生外观</li>
+<li>去掉点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android)</li>
+</ul>
+<h4 id="and-more-">and more...</h4>
+<p>更多的reset不再一一列举，详见原文件。</p>
+<h2 id="css-flexbox">CSS Flexbox</h2>
+<blockquote>
+<p>文件：<a href="https://github.com/tinglejs/tingle-style/blob/master/src/flexbox.styl">flexbox.styl</a></p>
+</blockquote>
+<p><code>tingle</code>中，所有<code>flexbox</code>相关的<code>class</code>值，都以<code>tFB</code>为前缀。</p>
+<h4 id="-">定义伸缩容器：</h4>
+<ul>
+<li>tFBH: 即<code>flexbox horizontal</code>，指定目标元素成为伸缩容器，且内部子元素水平排列。</li>
+<li>tFBV: 即<code>flexbox vertical</code>，指定目标元素成为伸缩容器，且内部子元素垂直排列。</li>
+</ul>
+<h4 id="-">对齐子元素(包括伸缩元素)：</h4>
+<ul>
+<li>tFBAS: 即<code>cross axis&#39;s align start</code>，将子元素对齐到<code>cross</code>轴的起点上。</li>
+<li>tFBAC: 即<code>cross axis&#39;s align center</code>，将子元素对齐到<code>cross</code>轴的中点上。</li>
+<li>tFBAE: 即<code>cross axis&#39;s align end</code>，将子元素对齐到<code>cross</code>轴的终点上。</li>
+<li>tFBJS: 即<code>main axis&#39;s justify start</code>，将子元素对齐到<code>main</code>轴的起点上。</li>
+<li>tFBJC: 即<code>main axis&#39;s justify center</code>，将子元素对齐到<code>main</code>轴的起点上。</li>
+<li>tFBJE: 即<code>main axis&#39;s justify end</code>，将子元素对齐到<code>main</code>轴的起点上。</li>
+</ul>
+<h2 id="css-utils">CSS Utils</h2>
+<blockquote>
+<p>文件：<a href="https://github.com/tinglejs/tingle-style/blob/master/src/util.styl">util.styl</a></p>
+</blockquote>
+<h4 id="float-float-">float(移动端不建议使用float)：</h4>
+<ul>
+<li>tCL / tClear: 即<code>clear</code>，清除浮动</li>
+<li>tFL: 即<code>float left</code></li>
+<li>tFR: 即<code>float right</code></li>
+</ul>
+<h4 id="radius-">radius：</h4>
+<ul>
+<li>tR{n}: 即<code>border-radius</code>，<code>n</code>的可选值为<code>3 4 5 6</code></li>
+<li>tRT{n}: 左上角和右上角为圆角，<code>n</code>的可选值同上</li>
+<li>tRR{n}: 右上角和右下角为圆角，<code>n</code>的可选值同上</li>
+<li>tRB{n}: 左下角和右下角为圆角，<code>n</code>的可选值同上</li>
+<li>tRL{n}: 左上角和左下角为圆角，<code>n</code>的可选值同上</li>
+</ul>
+<h4 id="padding-">padding：</h4>
+<ul>
+<li>tP{n}: 即<code>padding</code>，<code>n</code>的可选值为<code>0 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30</code>，即从<code>0</code>开始，到<code>30</code>为止的所有偶数。</li>
+<li>tPT{n}: 即<code>padding-top</code>，<code>n</code>的可选值同上</li>
+<li>tPR{n}: 即<code>padding-right</code>，<code>n</code>的可选值同上</li>
+<li>tPB{n}: 即<code>padding-bottom</code>，<code>n</code>的可选值同上</li>
+<li>tPL{n}: 即<code>padding-left</code>，<code>n</code>的可选值同上</li>
+</ul>
+<h4 id="margin-">margin：</h4>
+<ul>
+<li>tM{n}: 即<code>margin</code>，<code>n</code>的可选值为<code>0 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30</code>，即从<code>0</code>开始，到<code>30</code>为止的所有偶数。</li>
+<li>tMT{n}: 即<code>margin-top</code>，<code>n</code>的可选值同上</li>
+<li>tMR{n}: 即<code>margin-right</code>，<code>n</code>的可选值同上</li>
+<li>tMB{n}: 即<code>margin-bottom</code>，<code>n</code>的可选值同上</li>
+<li>tML{n}: 即<code>margin-left</code>，<code>n</code>的可选值同上</li>
+</ul>
+<h4 id="position-">position:</h4>
+<ul>
+<li>tPR: 即<code>position: relative</code></li>
+<li>tPF: 即<code>position: fixed</code></li>
+<li>tPA: 即<code>position: absolute</code></li>
+</ul>
+<h4 id="visibility-">visibility:</h4>
+<ul>
+<li>tDN / tHide: 即<code>display: none</code></li>
+<li>tDB: 即<code>display: block</code></li>
+<li>tDIB: 即<code>display: inline-block</code></li>
+<li>tBHide: 即<code>-webkit-backface-visibility: hidden</code></li>
+</ul>
+<h4 id="ellipsis-">ellipsis:</h4>
+<ul>
+<li>tOmit: 强制在一行内显示文字，多余部分用<code>...</code>显示</li>
+<li>tOmit2: 强制在两行内显示文字，多余部分用<code>...</code>显示，通常需要和<strong>设置父容器高度</strong>一起使用。</li>
+<li>tOmit3: 强制在三行内显示文字，多余部分用<code>...</code>显示，通常需要和<strong>设置父容器高度</strong>一起使用。</li>
+</ul>
+<h4 id="line-height-">line height:</h4>
+<p>规则：<code>1 ≤ n ≤ 2</code>之间的值表示字号的倍数，且小数点用<code>_</code>表示。</p>
+<ul>
+<li>tLH{em}: 基于字号的行高，<code>em</code>的可选值为<code>1、1_3、1_4、1_5、1_6、1_7、1_8、1_9、2</code>。如：<code>tLH1</code>表示<code>line-height: 1em</code>，<code>tLH1_3</code>表示<code>line-height: 1.3em</code>。</li>
+<li>tLH{px}: 基于<code>px</code>的行高，<code>px</code>的可选值为<code>30、44</code>，如：<code>tLH30</code>表示<code>line-height: 30px</code>。</li>
+</ul>
+<h4 id="width-">width:</h4>
+<ul>
+<li>tW{px}: 基于<code>px</code>的宽度，<code>px</code>的可选值包括：<code>0、16、32、64、128、30、44</code>。如<code>tW44</code>表示<code>width: 44px</code>。</li>
+</ul>
+<h4 id="height-">height:</h4>
+<ul>
+<li>tH{px}: 基于<code>px</code>的高度，<code>px</code>的可选值包括：<code>0、16、32、64、128、30、44</code>。如<code>tH44</code>表示<code>height: 44px</code>。</li>
+</ul>
+<h4 id="square-">square:</h4>
+<p>宽度和高度相等的情况，最常用于<code>icon</code>大小的设置。</p>
+<ul>
+<li>tWH{px}: <code>px</code>的可选值包括：<code>0、16、32、64、128、30、44</code>。如<code>tWH44</code>表示<code>width: 44px; height: 44px</code>。</li>
+</ul>
+<h4 id="font-size-">font size:</h4>
+<ul>
+<li>tFS{px}: 即<code>font-size</code>，<code>px</code>的可选值包括<code>0 12 14 16 18 20 22 24 26 28 30</code></li>
+</ul>
+<h4 id="font-color-">font color:</h4>
+<ul>
+<li>tFC{x}: 即<code>color: #xxx</code>，<code>x</code>的可选值包括<code>0、3、4、5、6、7、8、9、a、b、c、d、e、f</code>。如：<code>tFCa</code>表示<code>color: #aaa;</code>。</li>
+</ul>
+<h4 id="font-align-">font align:</h4>
+<ul>
+<li>tFAL: 即<code>text-align: left</code></li>
+<li>tFAC: 即<code>text-align: center</code></li>
+<li>tFAR: 即<code>text-align: right</code></li>
+</ul>
+<h4 id="backgrond-color-">backgrond color:</h4>
+<ul>
+<li>tBC{x}: 即<code>background-color: #xxx</code>，<code>x</code>的可选值包括<code>0、3、4、5、6、7、8、9、a、b、c、d、e、f</code>。如<code>tBC0</code>表示<code>background-color: #000</code>。</li>
+</ul>
+<h4 id="opacity-">opacity:</h4>
+<ul>
+<li>tOP{n}: 即<code>opacity</code>，设置透明度，<code>n</code>的可选值包括<code>0、10、30、50、80、100</code>。如<code>tOP30</code>表示<code>opacity: 0.3</code>。</li>
+</ul>
+<h4 id="3d-speed-up-">3d speed up:</h4>
+<ul>
+<li>t3D: 即<code>transform translateZ(0)</code>，开启3D加速，谨慎使用。</li>
+</ul>
+<h2 id="css-var">CSS Var</h2>
+<blockquote>
+<p>文件：<a href="https://github.com/tinglejs/tingle-style/blob/master/src/var.styl">var.styl</a></p>
+</blockquote>
+<h4 id="radius-n-">radius(n)</h4>
+<p>创建圆角样式，单位<code>px</code></p>
+<h4 id="shadow-x-y-b-s-a-">shadow(x, y, b, s, a)</h4>
+<p>创建阴影样式，单位<code>px</code></p>
+<h4 id="rem-px-">rem(px)</h4>
+<p>将<code>px</code>值转换为<code>rem</code>值</p>
+<h2 id="js-utils">JS Utils</h2>
+<blockquote>
+<p>文件：<a href="https://github.com/tinglejs/tingle-style/blob/master/src/util.js">util.js</a></p>
+</blockquote>
+<h4 id="createstylecontext">createStyleContext</h4>
+<p>创建一个带有<code>add</code>方法的样式上下文对象，用于动态生成样式。</p>
+<blockquote>
+<p>什么叫动态生成样式？<br>当然是相对于写在<code>css</code>文件里的静态样式而言啦，动态样式的最明显标志就是样式的名称或者样式的值中包含<code>js</code>的变量。见下面示例的第三步。</p>
+</blockquote>
+<p>语法：</p>
+<pre><code class="lang-js">// 第一步：引入模块
+const {createStyleContext} = require(&#39;tingle-style&#39;);
+
+// 第二步：创建一个样式对象
+let style = createStyleContext(contextId);
+
+// 第三步：在该对象下添加样式
+style.add(ruleId, ruleString); // ruleId可选，但强烈建议使用它。
+</code></pre>
+<p>参数：</p>
+<ul>
+<li>contextId：{String} required 上下文样式对象的唯一标识</li>
+<li>ruleId：{String} optional 新样式的唯一标识，建议使用，这样可以优化去重</li>
+<li>ruleString：{String} required 新样式的内容，建议使用ES6的字符串语法，见下面的<code>demo</code></li>
+</ul>
+<p>示例：</p>
+<pre><code class="lang-js">// 第一步：引入模块
+const {createStyleContext} = require(&#39;tingle-style&#39;);
+
+// 第二步：创建一个样式对象
+let style = createStyleContext(&#39;tGroup_List&#39;);
+
+// 第三步：添加带有唯一标记的样式(内部会根据ruleId做去重优化)
+// NOTE：省略了部分代码，定义了下面了indent，value，lowerSide变量
+style.add(`lineIndent${indent}`, `
+    .tGroup_List.lineIndent${indent} .tGroup_ListItem:after{
+        ${lowerSide}: ${value}
+    }
+`);
+</code></pre>
+<h4 id="unitize">unitize</h4>
+<p>添加长度单位，默认单位是<code>px</code>，返回<code>0</code>或者是带有单位的长度字符串值。</p>
+<p>语法：</p>
+<pre><code class="lang-js">// 第一步：引入模块
+const {unitize} = require(&#39;tingle-style&#39;);
+
+// 第二步：语法
+let value = unitize(any);
+</code></pre>
+<p>参数：</p>
+<ul>
+<li>any {Number|String|*} optional 要处理的长度值</li>
+</ul>
+<p>示例：</p>
+<pre><code class="lang-js">unitize(10);     // 10px
+unitize(&#39;10px&#39;); // 10px
+unitize(&#39;1rem&#39;); // 1rem
+unitize();       // 0
+</code></pre>
+<h2 id="local-dev">Local Dev</h2>
+<pre><code class="lang-bash">$ gulp server
+</code></pre>
+<p>启动之后，对任何<code>styl</code>文件的改动都会触发重新编译，得到同步更新的<code>css</code>文件。</p>
+<h2 id="updates">Updates</h2>
+<ul>
+<li>tingle-style@0.3.0 / 2015-10-25<ul>
+<li><code>radius、padding、margin</code>样式顺序优化</li>
+<li>添加<code>util.js</code>模块</li>
+</ul>
+</li>
+<li>tingle-style@0.3.1 / 2015-10-28<ul>
+<li>添加文档</li>
+</ul>
+</li>
+</ul>
+</div><div id="icon"><h1 id="icon-npm-version-https-badge-fury-io-js-tingle-icon-svg-http-badge-fury-io-js-tingle-icon-">Icon <a href="http://badge.fury.io/js/tingle-icon"><img src="https://badge.fury.io/js/tingle-icon.svg" alt="npm version"></a></h1>
+<p>Icon图标展示</p>
+<p><img src="http://gtms01.alicdn.com/tps/i1/TB1LYlgIVXXXXcWXXXXHXIoYFXX-285-253.png" alt="icon viewer"></p>
+<h2 id="notice">Notice</h2>
+<p>使用最新的tingle-icon组件需要最新的tingle-context支持，具体详情可查看History记录。</p>
+<h2 id="best-practice-">Best Practice 最佳实践</h2>
+<p>这是一个 tingle 组件，使用SVG来制作icon系统的解决方案。</p>
+<h2 id="-">样式依赖</h2>
+<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;./node_modules/tingle-style/src/tingle.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;./src/Icon.css&quot;&gt;
+</code></pre>
+<h3 id="jsx">JSX</h3>
+<pre><code class="lang-js">&lt;Icon className=&quot;icon&quot; id=&quot;baby&quot;/&gt;
+&lt;Icon className=&quot;icon customCls&quot; id=&quot;headphones&quot;/&gt;
+...
+</code></pre>
+<h3 id="-">可用配置</h3>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>必填</th>
+<th>默认值</th>
+<th>功能/备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>required</td>
+<td>---</td>
+<td>需要引用的svg的ID值</td>
+</tr>
+<tr>
+<td>className</td>
+<td>optional</td>
+<td>tIcon</td>
+<td>自定义样式名</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注1: id的值默认情况下是根据SVG资源名称相对应的</p>
+</blockquote>
+</div><div id="slot"><h1 id="tingle-slot-npm-version-https-badge-fury-io-js-tingle-slot-svg-http-badge-fury-io-js-tingle-slot-">tingle-slot <a href="http://badge.fury.io/js/tingle-slot"><img src="https://badge.fury.io/js/tingle-slot.svg" alt="npm version"></a></h1>
+<p>Slot 是老虎机滚轮选择器。</p>
+</div><div id="collection"><h1 id="tingle-collection-npm-version-https-badge-fury-io-js-tingle-collection-svg-http-badge-fury-io-js-tingle-collection-">tingle-collection <a href="http://badge.fury.io/js/tingle-collection"><img src="https://badge.fury.io/js/tingle-collection.svg" alt="npm version"></a></h1>
 <h2 id="props">Props</h2>
+<h2 id="demos">Demos</h2>
+</div><div id="box"><h1 id="tingle-box-npm-version-https-badge-fury-io-js-tingle-box-svg-http-badge-fury-io-js-tingle-box-">tingle-box <a href="http://badge.fury.io/js/tingle-box"><img src="https://badge.fury.io/js/tingle-box.svg" alt="npm version"></a></h1>
+<p>该模块包含三个Component，分别是：</p>
+<ul>
+<li>HBox：水平方向的伸缩容器。本身也是一个可伸缩元素。</li>
+<li>VBox：垂直方向的伸缩容器。本身也是一个可伸缩元素。</li>
+<li>Box：可伸缩元素。</li>
+</ul>
+</div><div id="group"><h1 id="tingle-group-npm-version-https-badge-fury-io-js-tingle-group-svg-http-badge-fury-io-js-tingle-group-">tingle-group <a href="http://badge.fury.io/js/tingle-group"><img src="https://badge.fury.io/js/tingle-group.svg" alt="npm version"></a></h1>
+<p><code>Group</code>是列表容器组件。封装了以下功能：</p>
+<ul>
+<li>灵活配置间隔线和子元素的缩进值，而且间隔线和子元素的缩进值是相互独立的，使<code>IOS</code>和<code>Material</code>风格的多样式列表更加容易实现。</li>
+<li>在支持<code>hairline</code>显示的设备上自动优化显示成极细的线。</li>
+</ul>
+<p>效果预览：</p>
+<p><img src="https://gw.alicdn.com/tps/TB1efEEKFXXXXXLXFXXXXXXXXXX-347-574.png" alt=""></p>
+<h2 id="usage">Usage</h2>
+<p>首先引入<code>Group</code>，其中<code>Group</code>下面包含<code>Head</code>和<code>List</code>两个子组件。</p>
+<p>项目环境下，<code>Tingle</code>是全局变量：</p>
+<pre><code class="lang-js">// ES5
+var Group = Tingle.Group;
+// ES2015
+let {Group} = Tingle;
+</code></pre>
+<p>全局使用概览：</p>
+<pre><code class="lang-js">...
+render() {
+    return (&lt;Group&gt;
+        &lt;Group.Head&gt;title&lt;/Group.Head&gt;
+        &lt;Group.List&gt;
+            &lt;div&gt;content&lt;/div&gt;
+            &lt;div&gt;content&lt;/div&gt;
+        &lt;/Group.List&gt;
+    &lt;/Group&gt;);
+}
+</code></pre>
+<h2 id="group-list">Group.List</h2>
 <h4 id="classname">className</h4>
 <p>描述：自定义样式的<code>class</code>名称。<br>类型：<code>String</code><br>默认：<code>&#39;&#39;</code><br>必选：否</p>
 <p>示例：</p>
-<pre><code>&lt;Grid className=&quot;customClass&quot;&gt;&lt;/Grid&gt;
-</code></pre><h4 id="col">col</h4>
-<p>描述：自定义列数，如果子元素不足整列，将以空元素补位。<br>类型：<code>Number</code><br>默认：<code>4</code><br>必选：否</p>
-<p>示例1：下面的代码将显示成一行三列，即使子元素不足三个。</p>
-<pre><code>&lt;Grid col={3}&gt;
-    &lt;div&gt;&lt;/div&gt;
-&lt;/Grid&gt;
-</code></pre><p>示例2：下面的代码将显示两行三列，即使子元素不足两行。</p>
-<pre><code>&lt;Grid col={3}&gt;
-    &lt;div&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;/div&gt;
-&lt;/Grid&gt;
-</code></pre><h2 id="event">Event</h2>
-<h4 id="onchange-newvalue-e-">onChange(newValue, e)</h4>
-<p>描述：输入时触发。
-类型：<code>Number</code><br>默认：<code>4</code><br>必选：</p>
-<p>示例1：下面的代码将显示成一行三列，即使子元素不足三个。</p>
-<pre><code class="lang-javascript">// 新值和事件对象
-handleChange(newValue,e) {
-
-}
+<pre><code>&lt;Group&gt;
+    &lt;Group.List className=&quot;customClass&quot;&gt;...&lt;/Group.List&gt;
+&lt;/Group&gt;
+</code></pre><h4 id="lineindent">lineIndent</h4>
+<p>描述：配置间隔线的缩进值。<br>类型：<code>Number|String|Array</code>  </p>
+<ul>
+<li>Number：设置左缩进，默认追加<code>px</code>作为单位，如：<code>lineIndent={10}</code></li>
+<li>String：设置左缩进，自定义长度单位，如：<code>lineIndent={&#39;1rem&#39;}</code></li>
+<li>Array：设置左右缩进，数组成员的类型为<code>Number</code>或<code>String</code>，默认处理如上。如：<code>lineIndent={[10, 10]}</code></li>
+</ul>
+<p>默认：无<br>必选：否</p>
+<p>示例：</p>
+<pre><code class="lang-js">&lt;Group&gt;
+    &lt;Group.List lineIndent={10}&gt;...&lt;/Group.List&gt;
+&lt;/Group&gt;
 </code></pre>
-<h4 id="onfocus-e-">onFocus(e)</h4>
-<h4 id="onblur-e-">onBlur(e)</h4>
-<h1 id="tab-npm-version-https-badge-fury-io-js-tingle-tab-svg-http-badge-fury-io-js-tingle-tab-">Tab <a href="http://badge.fury.io/js/tingle-tab"><img src="https://badge.fury.io/js/tingle-tab.svg" alt="npm version"></a></h1>
+<h4 id="itemindent">itemIndent</h4>
+<p>描述：配置列表子元素的缩进值。<br>类型：<code>Number|String|Array</code>  </p>
+<ul>
+<li>Number：设置左缩进，默认追加<code>px</code>作为单位，如：<code>itemIndent={10}</code></li>
+<li>String：设置左缩进，自定义长度单位，如：<code>itemIndent={&#39;1rem&#39;}</code></li>
+<li>Array：设置左右缩进，数组成员的类型为<code>Number</code>或<code>String</code>，默认处理如上。如：<code>itemIndent={[10, 10]}</code></li>
+</ul>
+<p>默认：无<br>必选：否</p>
+<p>示例：</p>
+<pre><code class="lang-js">&lt;Group&gt;
+    &lt;Group.List itemIndent={[10, 10]}&gt;...&lt;/Group.List&gt;
+&lt;/Group&gt;
+</code></pre>
+<h2 id="todos">Todos</h2>
+<ul>
+<li>当子元素是null时</li>
+</ul>
+</div><div id="slide"><h1 id="slide-npm-version-https-badge-fury-io-js-tingle-slide-svg-http-badge-fury-io-js-tingle-slide-">Slide 轮播图 <a href="http://badge.fury.io/js/tingle-slide"><img src="https://badge.fury.io/js/tingle-slide.svg" alt="Npm version"></a></h1>
+<p><code>tingle-slide</code>是抽象的幻灯片容器</p>
+</div><div id="avatar"><h1 id="tingle-avatar">tingle-avatar</h1>
+<p><a href="http://badge.fury.io/js/tingle-avatar"><img src="https://badge.fury.io/js/tingle-avatar.svg" alt="npm version"></a></p>
+<p>  用于头像显示, 如果没有头像则根据名字随机生成一个带背景颜色的头像，如果没有名字则显示一个默认图片。可给人员或公司默认 logo 等场景使用。</p>
+<p>  头像生成规则如下：</p>
+<ol>
+<li>定义一组颜色集合</li>
+<li>通过名字来计算 hashCode ，hashCode 算法采用 java 中的 hashCode 实现方式， <strong>如果和客户端同时开发项目，请注意和 ios/android 同学沟通保持一致的 hash算法</strong>（可以通过 Avatar.hashCode(&#39;xxx&#39;); Avatar.hashCode(&#39;xxx&#39;, true); 来测试 hash 值）。计算结果默认为 int 型（可能会为负数），也可通过传入 isLong: true 得到 long 型（过长会用科学计数法表示）。</li>
+<li>将 hashCode 取绝对值，对颜色集合的总数进行取模，得到颜色的索引，即得到了背景颜色</li>
+<li>名字显示规则<ul>
+<li>如果是第一个字符是英文，则取第一个字符，转为大写；</li>
+<li>如果小于等于两个字符，全部显示</li>
+<li>如果等于三个字符，显示后两个字符</li>
+<li>如果大于三个字符，显示前两个字符</li>
+<li>如果没有名字，显示一个默认图片</li>
+</ul>
+</li>
+</ol>
+<h2 id="props">Props</h2>
+<h4 id="src">src</h4>
+<p>描述：头像图片链接</p>
+<p>类型：String</p>
+<p>默认：&#39;&#39;</p>
+<p>必填：否</p>
+<h4 id="name">name</h4>
+<p>描述：名字</p>
+<p>类型：String</p>
+<p>默认：&#39;&#39;</p>
+<p>必填：否</p>
+<h4 id="size">size</h4>
+<p>描述：头像大小</p>
+<p>类型：String / Number</p>
+<p>默认：40px</p>
+<p>必填：否</p>
+<h4 id="fontsize">fontSize</h4>
+<p>描述：字体大小</p>
+<p>类型：String / Number</p>
+<p>默认：12px</p>
+<p>必填：否</p>
+<h4 id="colors">colors</h4>
+<p>描述：用来生成背景的颜色集合，可通过 Context 进行全局设置， 也可以通过 props 传入</p>
+<p>类型：Array</p>
+<p>默认：[&quot;#68ba99&quot;, &quot;#66b09c&quot;, &quot;#55a4ae&quot;, &quot;#5c9bbb&quot;, &quot;#529e92&quot;, &quot;#55b595&quot;] </p>
+<p>必填：否</p>
+<h4 id="classname">className</h4>
+<p>描述：自定义 class</p>
+<p>类型：String</p>
+<p>默认：&#39;&#39;</p>
+<p>必填：否</p>
+<h4 id="hashcode">hashCode</h4>
+<p>描述：hashCode 算法， 可通过 Context 进行全局设置， 也可以通过 props 传入(不建议自定义)</p>
+<p>类型：Function</p>
+<p>默认：java 默认的 hashCode 算法</p>
+<p>必填：否</p>
+<h4 id="islong">isLong</h4>
+<p>描述：hashCode 的类型</p>
+<p>类型：Boolean</p>
+<p>默认：false</p>
+<p>必填：否</p>
+<h4 id="defaultcolor">defaultColor</h4>
+<p>描述：固定背景颜色，若传入此参数，则背景颜色为当前参数颜色</p>
+<p>类型：String</p>
+<p>默认：&#39;&#39;</p>
+<p>必填：否</p>
+<h4 id="defaultsrc">defaultSrc</h4>
+<p>描述：没有名字是显示的默认头像图片地址， 可通过 Context 进行全局设置， 也可以通过 props 传入</p>
+<p>类型：String</p>
+<p>默认：<a href="https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png">https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png</a></p>
+<p>必填：否</p>
+<h2 id="api-">API接口</h2>
+<h3 id="avatar-hashcode-name-islong-">Avatar.hashCode(name, isLong)</h3>
+<p>静态方法，计算名字的 hashCode，<strong>如果和客户端同时开发项目，可通过此方法测试 hashCode是否和 ios/android 同学保持一致</strong></p>
+<h3 id="avatar-formatname-name-">Avatar.formatName(name)</h3>
+<p>静态方法，按照名字显示规则返回名字</p>
+</div><div id="tab"><h1 id="tab-npm-version-https-badge-fury-io-js-tingle-tab-svg-http-badge-fury-io-js-tingle-tab-">Tab <a href="http://badge.fury.io/js/tingle-tab"><img src="https://badge.fury.io/js/tingle-tab.svg" alt="npm version"></a></h1>
 <p>标签切换控件</p>
-<h1 id="button-npm-version-https-badge-fury-io-js-tingle-button-svg-http-badge-fury-io-js-tingle-button-">Button 按钮 <a href="http://badge.fury.io/js/tingle-button"><img src="https://badge.fury.io/js/tingle-button.svg" alt="npm version"></a></h1>
+</div><div id="rate"><h1 id="tingle-rate-npm-version-https-badge-fury-io-js-tingle-rate-svg-http-badge-fury-io-js-tingle-rate-">tingle-rate <a href="http://badge.fury.io/js/tingle-rate"><img src="https://badge.fury.io/js/tingle-rate.svg" alt="npm version"></a></h1>
+<h2 id="props">Props</h2>
+<h4 id="classname">className</h4>
+<p>描述：自定义样式的class名称。</p>
+<p>类型：String</p>
+<p>默认：&#39;&#39;</p>
+<p>必选：否</p>
+<h4 id="totalscore">totalScore</h4>
+<p>描述：icon的个数，即总分。</p>
+<p>类型：Number</p>
+<p>默认：5</p>
+<p>必选：否</p>
+<h4 id="height">height</h4>
+<p>描述：icon的尺寸，icon一定是正方形的，也就是width=height。</p>
+<p>类型：Number 或 String</p>
+<p>默认：30</p>
+<p>必选：否</p>
+<h4 id="gap">gap</h4>
+<p>描述：每一项的padding-let 和 padding-right的总和。但第一项的padding-let和最后一项padding-right均为: 0 !important。</p>
+<p>类型：Number 或 String</p>
+<p>默认：10</p>
+<p>必选：否</p>
+<h4 id="score">score</h4>
+<p>描述：默认已得到的分数。</p>
+<p>类型：Number</p>
+<p>默认：0</p>
+<p>必选：否</p>
+<h4 id="onchange">onChange</h4>
+<p>描述：回调函数，会返回选中的分数onChange(currentScore)。</p>
+<p>类型：Function</p>
+<p>默认：noop</p>
+<p>必选：否</p>
+</div><div id="button"><h1 id="button-npm-version-https-badge-fury-io-js-tingle-button-svg-http-badge-fury-io-js-tingle-button-">Button 按钮 <a href="http://badge.fury.io/js/tingle-button"><img src="https://badge.fury.io/js/tingle-button.svg" alt="npm version"></a></h1>
 <p>效果图:</p>
-</main></div></body></html>
+</div><div id="on-off"><h1 id="tingle-on-off-npm-version-https-badge-fury-io-js-tingle-on-off-svg-http-badge-fury-io-js-tingle-on-off-">tingle-on-off <a href="http://badge.fury.io/js/tingle-on-off"><img src="https://badge.fury.io/js/tingle-on-off.svg" alt="npm version"></a></h1>
+<blockquote>
+<p>Radio Component, iPhone style.</p>
+</blockquote>
+</div><div id="time"></div></main></div></body><script src="https://a.alipayobjects.com/jquery/jquery/1.8.0/jquery.js"></script><script src="../asset/js/docs.js"></script></html>

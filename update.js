@@ -8,14 +8,47 @@ var express = require('express');
 var marked = require('marked');
 
 var catchList = [{
-    name: 'grid',
-    url: 'https://raw.githubusercontent.com/tinglejs/tingle-grid/master/README.md'
+    name: 'context',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-context/master/README.md'
+},{
+    name: 'style',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-style/master/README.md'
+},{
+    name: 'icon',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-icon/master/README.md'
+},{
+    name: 'slot',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-slot/master/README.md'
+},{
+    name: 'collection',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-collection/master/README.md'
+},{
+    name: 'box',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-box/master/README.md'
+},{
+    name: 'group',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-group/master/README.md'
+},{
+    name: 'slide',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-slide/master/README.md'
+},{
+    name: 'avatar',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-avatar/master/README.md'
 },{
     name: 'tab',
     url: 'https://raw.githubusercontent.com/tinglejs/tingle-tab/master/README.md'
-}, {
+},{
+    name: 'rate',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-rate/master/README.md'
+},{
     name: 'button',
     url: 'https://raw.githubusercontent.com/tinglejs/tingle-button/master/README.md'
+},{
+    name: 'on-off',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-on-off/master/README.md'
+},{
+    name: 'time',
+    url: 'https://raw.githubusercontent.com/tinglejs/tingle-grid/time/README.md'
 }];
 var resultMap = {};
 
@@ -116,17 +149,15 @@ function saveDocs() {
     var md = [];
     var res = [];
     catchList.map(function (item) {
-        md.push(resultMap[item.name])
+        md.push('<div id="' + item.name + '">' + marked(resultMap[item.name]) + '</div>')
     })
 
-    var header = fs.readFileSync('tpl/header.html'),
-        footer = fs.readFileSync('tpl/footer.html');
 
     //res.push(header);saqw
 
     res.push(jade.renderFile('./tpl/docs.jade', {
         catchList: catchList,
-        md: marked(md.join('\n'))
+        md: md.join('')
     }));
 
     //console.log(111);

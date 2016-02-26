@@ -74,14 +74,16 @@ body {
     }
 }
 .sidebar img {
-    width: 100px;
+    width: 50px;
     display: inline-block;
     vertical-align: middle;
-    margin-bottom: 1rem;
+    /*margin-bottom: 1rem;*/
+    margin-left: 5px;
+    background-color: transparent;
 }
 @media (min-width: 800px) {
     .sidebar img {
-        display: none;
+        /*display: none;*/
     }
 }
 .sidebar nav {
@@ -109,12 +111,16 @@ body {
 }
 .sidebar p {
     font-size: 1.1em;
+    margin: 15px 0 0;
+}
+.sidebar p.small {
+    font-size: 0.9em;
 }
 .sidebar p a {
     color: #fff;
 }
 .content {
-    flex: 2;
+    flex: 3;
     position: relative;
 }
 @media (min-width: 800px) {
@@ -183,4 +189,34 @@ ol {
         width: 120px;
         margin: auto auto 1.5rem;
     }
+}
+
+.sidebar nav > a.to-index {
+    /*background: #ff4726;*/
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    text-align: left;
+    /*font-size: 14px;*/
+}
+.sidebar nav > a.to-index:hover {
+    background-color: transparent;
+}
+.sidebar nav > a.to-index i {
+    font-size: 14px;
+}
+.sidebar nav > a.to-index i:before {
+    margin-right: 5px;
+}
+
+a.github-link {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+a.github-link img {
+    width: 100%;
+    height: 100%;
 }
