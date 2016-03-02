@@ -170,7 +170,7 @@ function saveDocs() {
 
     //res.push(footer);
 
-    fs.open("dist/docs.html", "w", 0644, function (e, fd) {
+    fs.open("docs.html", "w", 0644, function (e, fd) {
         if (e) throw e;
         fs.write(fd, res.join(''), 0, 'utf8', function (e) {
             if (e) throw e;
