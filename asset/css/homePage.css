@@ -1,0 +1,546 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+p {
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+ font-family: 'fzxs';
+ src: url('../../asset/font/FZXIANGSU12.TTF');
+}
+
+@media (min-width:1024px) {
+    .top-screen .tingle-slogan .float-layer .slogan-content .slogan-top {
+        font-size: 95px;
+        margin-top: 150px;
+    }
+    .top-screen .tingle-slogan .float-layer .slogan-content .slogan-bottom {
+        font-size: 51px;
+        margin-top: 10px;
+    }
+    .top-screen .top-nav .tingle-logo {
+        margin-left: 70px;
+        padding-top: 11px;
+        display: inline-block;
+    }
+    .top-screen .top-nav .nav-icon {
+        float: right;
+        height: 100%;
+        width: 50px;
+        text-align: center;
+        display: none;
+    }
+    .top-screen .top-nav .nav {
+        float: right;
+        display: block;
+    }
+    .top-screen .top-nav .nav .nav-item {
+        float: left;
+        margin-right: 70px;
+        line-height: 70px;
+    }
+    .top-screen .top-nav .nav .nav-item a {
+        color: rgba(255, 255, 255,0.5);
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .top-screen .top-nav .nav .nav-item a:hover {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number {
+        order: 2;
+        flex-grow: 1;
+        color: #fff;
+        text-align: center;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number {
+        width: 130px;
+        height: 130px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number .text {
+        font-size: 14px;
+        margin-top: 45px;
+        text-align: center;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number .num {
+        font-size: 36px;
+        margin-top: 3px;
+        text-align: center;
+    }
+    .tingle-feature .feature-container .title {
+        font-size: 80px;
+        text-align: center;
+        color: #fff;
+    }
+    .tingle-feature .feature-container .content-box {
+        margin-top: 50px;
+    }
+    .tingle-feature .feature-container .content {
+        font-size: 20px;
+        line-height: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 6px;
+        text-align: center;
+        color: #fff;
+    }
+    .top-screen .tingle-slogan {
+        background: url('https://img.alicdn.com/tps/TB1K5TNLFXXXXbpXpXXXXXXXXXX-2400-1200.jpg') no-repeat;
+        height: 800px;
+        background-size: cover;
+    }
+    .top-screen .tingle-slogan .float-layer {
+        width: 100%;
+        height: 800px;
+        background: rgba(0,0,0,0.7);
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+    }
+    .top-screen .tingle-slogan .float-layer .slogan-content {
+        order: 1;
+        flex-grow: 2;
+        color: #fff;
+        text-align: center;
+        font-family: fzxs;
+    }
+    .tingle-feature .feature-container {
+        height: 800px;
+        padding-top: 100px;
+        box-sizing: border-box;
+    }
+    .tingle-feature .feature-container .img {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .tingle-feature .feature-container .img img {
+        width: 600px;
+        border-radius: 10px;
+    }
+}
+@media (max-width:1023px) {
+    .top-screen .tingle-slogan .float-layer .slogan-content .slogan-top {
+        font-size: 95px;
+        margin-top: 150px;
+    }
+    .top-screen .tingle-slogan .float-layer .slogan-content .slogan-bottom {
+        font-size: 51px;
+        margin-top: 10px;
+    }
+    .top-screen .top-nav .tingle-logo {
+        margin-left: 70px;
+        padding-top: 11px;
+        display: inline-block;
+    }
+    .top-screen .top-nav .nav-icon {
+        float: right;
+        height: 100%;
+        width: 50px;
+        text-align: center;
+        display: none;
+    }
+    .top-screen .top-nav .nav {
+        float: right;
+        display: block;
+    }
+    .top-screen .top-nav .nav .nav-item {
+        float: left;
+        margin-right: 70px;
+        line-height: 70px;
+    }
+    .top-screen .top-nav .nav .nav-item a {
+        color: rgba(255, 255, 255,0.5);
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .top-screen .top-nav .nav .nav-item a:hover {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number {
+        order: 2;
+        flex-grow: 1;
+        color: #fff;
+        text-align: center;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number {
+        width: 130px;
+        height: 130px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number .text {
+        font-size: 14px;
+        margin-top: 45px;
+        text-align: center;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number .num {
+        font-size: 36px;
+        margin-top: 3px;
+        text-align: center;
+    }
+    .tingle-feature .feature-container .title {
+        font-size: 80px;
+        text-align: center;
+        color: #fff;
+    }
+    .tingle-feature .feature-container .content-box {
+        margin-top: 50px;
+    }
+    .tingle-feature .feature-container .content {
+        font-size: 20px;
+        line-height: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 6px;
+        text-align: center;
+        color: #fff;
+    }
+    .top-screen .tingle-slogan {
+        background: url('https://img.alicdn.com/tps/TB1K5TNLFXXXXbpXpXXXXXXXXXX-2400-1200.jpg') no-repeat;
+        height: 800px;
+        background-size: 1024px 800px;
+        // background-size: cover;
+    }
+    .top-screen .tingle-slogan .float-layer {
+        width: 100%;
+        height: 800px;
+        background: rgba(0,0,0,0.7);
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+    }
+    .top-screen .tingle-slogan .float-layer .slogan-content {
+        order: 1;
+        flex-grow: 2;
+        color: #fff;
+        text-align: center;
+        font-family: fzxs;
+    }
+    .tingle-feature .feature-container {
+        height: 800px;
+        padding-top: 100px;
+        box-sizing: border-box;
+    }
+    .tingle-feature .feature-container .img {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .tingle-feature .feature-container .img img {
+        width: 600px;
+        border-radius: 10px;
+    }
+}
+@media (max-width:720px) {
+    .top-screen .tingle-slogan .float-layer .slogan-content .slogan-top {
+        font-size: 60px;
+        margin-top: 150px;
+    }
+    .top-screen .tingle-slogan .float-layer .slogan-content .slogan-bottom {
+        font-size: 35px;
+        margin-top: 10px;
+    }
+    .top-screen .top-nav .tingle-logo {
+        margin-left: 24px;
+        padding-top: 11px;
+        display: inline-block;
+    }
+    .top-screen .top-nav .nav-icon {
+        float: right;
+        height: 70px;
+        width: 88px;
+        text-align: center;
+        display: block;
+        cursor: pointer;
+    }
+    .top-screen .top-nav .nav-icon img {
+        width: 40px;
+        height: 40px;
+        margin-top: 15px;
+    }
+    .top-screen .top-nav .nav {
+        float: right;
+        position: absolute;
+        right: 0;
+        top: 70px;
+        display: none;
+    }
+    .top-screen .top-nav .nav .nav-item {
+        height: 50px;
+        line-height: 50px;
+        background: rgba(0, 0, 0, 0.7);
+        float: none;
+        margin-right: 0;
+    }
+    .top-screen .top-nav .nav .nav-item:hover {
+        height: 50px;
+        line-height: 50px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+    .top-screen .top-nav .nav .nav-item a {
+        display: inline-block;
+        width: 88px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        color: rgba(255, 255, 255,0.5);
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .top-screen .top-nav .nav .nav-item a:hover {
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number {
+        order: 2;
+        flex-grow: 1;
+        color: #fff;
+        text-align: center;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 115px;
+        margin-right: 115px;
+        margin-bottom: 50px;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number .text {
+        font-size: 12px;
+        margin-top: 35px;
+        text-align: center;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number .num {
+        font-size: 30px;
+        margin-top: 3px;
+        text-align: center;
+    }
+    .tingle-feature .feature-container .title {
+        font-size: 60px;
+        text-align: center;
+        color: #fff;
+    }
+    .tingle-feature .feature-container .content-box {
+        margin-top: 50px;
+    }
+    .tingle-feature .feature-container .content {
+        font-size: 16px;
+        line-height: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 6px;
+        text-align: center;
+        color: #fff;
+    }
+    .top-screen .tingle-slogan {
+        background: url('https://img.alicdn.com/tps/TB1K5TNLFXXXXbpXpXXXXXXXXXX-2400-1200.jpg') no-repeat;
+        height: 800px;
+        background-size: 720px 800px;
+        // background-size: cover;
+    }
+    .top-screen .tingle-slogan .float-layer {
+        width: 100%;
+        height: 800px;
+        background: rgba(0,0,0,0.7);
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+    }
+    .top-screen .tingle-slogan .float-layer .slogan-content {
+        order: 1;
+        flex-grow: 2;
+        color: #fff;
+        text-align: center;
+        font-family: fzxs;
+    }
+    .tingle-feature .feature-container {
+        height: 800px;
+        padding-top: 100px;
+        box-sizing: border-box;
+    }
+    .tingle-feature .feature-container .img {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .tingle-feature .feature-container .img img {
+        width: 400px;
+        border-radius: 10px;
+    }
+}
+@media (max-width:480px) {
+    .top-screen .tingle-slogan .float-layer .slogan-content .slogan-top {
+        font-size: 50px;
+        margin-top: 150px;
+    }
+    .top-screen .tingle-slogan .float-layer .slogan-content .slogan-bottom {
+        font-size: 25px;
+        margin-top: 10px;
+    }
+    .top-screen .top-nav .tingle-logo {
+        margin-left: 24px;
+        padding-top: 11px;
+        display: inline-block;
+    }
+    .top-screen .top-nav .nav-icon {
+        float: right;
+        height: 70px;
+        width: 88px;
+        text-align: center;
+        display: block;
+        cursor: pointer;
+    }
+    .top-screen .top-nav .nav-icon img {
+        width: 40px;
+        height: 40px;
+        margin-top: 15px;
+    }
+    .top-screen .top-nav .nav {
+        float: right;
+        position: absolute;
+        right: 0;
+        top: 70px;
+        display: none;
+    }
+    .top-screen .top-nav .nav .nav-item {
+        height: 50px;
+        line-height: 50px;
+        background: rgba(0, 0, 0, 0.7);
+        float: none;
+        margin-right: 0;
+    }
+    .top-screen .top-nav .nav .nav-item:hover {
+        height: 50px;
+        line-height: 50px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+    .top-screen .top-nav .nav .nav-item a {
+        display: inline-block;
+        width: 88px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        color: rgba(255, 255, 255,0.5);
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .top-screen .top-nav .nav .nav-item a:hover {
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number {
+        order: 2;
+        flex-grow: 1;
+        color: #fff;
+        text-align: center;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 115px;
+        margin-right: 115px;
+        margin-bottom: 50px;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number .text {
+        font-size: 12px;
+        margin-top: 35px;
+        text-align: center;
+    }
+    .top-screen .tingle-slogan .float-layer .tingle-number .number .num {
+        font-size: 30px;
+        margin-top: 3px;
+        text-align: center;
+    }
+    .tingle-feature .feature-container .title {
+        font-size: 50px;
+        text-align: center;
+        color: #fff;
+    }
+    .tingle-feature .feature-container .content-box {
+        margin-top: 50px;
+    }
+    .tingle-feature .feature-container .content {
+        font-size: 16px;
+        margin-top: 6px;
+        text-align: center;
+        color: #fff;
+    }
+    .top-screen .tingle-slogan {
+        background: url('https://img.alicdn.com/tps/TB1K5TNLFXXXXbpXpXXXXXXXXXX-2400-1200.jpg') no-repeat;
+        height: 650px;
+        background-size: 480px 650px;
+        // background-size: cover;
+    }
+    .top-screen .tingle-slogan .float-layer {
+        width: 100%;
+        height: 650px;
+        background: rgba(0,0,0,0.7);
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+    }
+    .top-screen .tingle-slogan .float-layer .slogan-content {
+        order: 1;
+        flex-grow: 2;
+        color: #fff;
+        text-align: center;
+        font-family: fzxs;
+    }
+    .tingle-feature .feature-container {
+        height: 650px;
+        padding-top: 100px;
+        box-sizing: border-box;
+    }
+    .tingle-feature .feature-container .img {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .tingle-feature .feature-container .img img {
+        width: 300px;
+        border-radius: 10px;
+    }
+}
+.top-screen .top-nav {
+    height: 70px;
+    background: #b5453e;
+}
+
+.top-screen .top-nav .nav .nav-item .active {
+    color: #fff;
+}
+
+.tingle-feature .red {
+    background: #b5453e;
+}
+.tingle-feature .black {
+    background: #303030;
+}
