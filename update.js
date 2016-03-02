@@ -66,7 +66,7 @@ function download(url, callback) {
     });
 }
 
-//curl();
+curl();
 function curl() {
     var nums = 0;
 
@@ -89,7 +89,7 @@ function curl() {
     })
 }
 
-handleMarkdown()
+//handleMarkdown()
 
 // 处理markdown
 function handleMarkdown() {
@@ -110,6 +110,9 @@ function handleMarkdown() {
             src.map(function (item) {
                 if (isContinuity) {
                     if (item.slice(0, 4) == '<img') {
+                        isContinuity = false;
+                        return;
+                    } else if (item.slice(0,4 ) == '![](') {
                         isContinuity = false;
                         return;
                     } else if (item.slice(0, 10) == '## Install') {

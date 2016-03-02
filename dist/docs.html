@@ -231,52 +231,213 @@ unitize();       // 0
 </ul>
 </li>
 </ul>
-</div><div id="icon"><h1 id="icon-npm-version-https-badge-fury-io-js-tingle-icon-svg-http-badge-fury-io-js-tingle-icon-">Icon <a href="http://badge.fury.io/js/tingle-icon"><img src="https://badge.fury.io/js/tingle-icon.svg" alt="npm version"></a></h1>
-<p>Icon图标展示</p>
-<p><img src="http://gtms01.alicdn.com/tps/i1/TB1LYlgIVXXXXcWXXXXHXIoYFXX-285-253.png" alt="icon viewer"></p>
-<h2 id="notice">Notice</h2>
-<p>使用最新的tingle-icon组件需要最新的tingle-context支持，具体详情可查看History记录。</p>
-<h2 id="best-practice-">Best Practice 最佳实践</h2>
-<p>这是一个 tingle 组件，使用SVG来制作icon系统的解决方案。</p>
-<h2 id="-">样式依赖</h2>
-<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;./node_modules/tingle-style/src/tingle.css&quot;&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;./src/Icon.css&quot;&gt;
-</code></pre>
-<h3 id="jsx">JSX</h3>
-<pre><code class="lang-js">&lt;Icon className=&quot;icon&quot; id=&quot;baby&quot;/&gt;
-&lt;Icon className=&quot;icon customCls&quot; id=&quot;headphones&quot;/&gt;
-...
-</code></pre>
-<h3 id="-">可用配置</h3>
-<table>
-<thead>
-<tr>
-<th>配置项</th>
-<th>必填</th>
-<th>默认值</th>
-<th>功能/备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>required</td>
-<td>---</td>
-<td>需要引用的svg的ID值</td>
-</tr>
-<tr>
-<td>className</td>
-<td>optional</td>
-<td>tIcon</td>
-<td>自定义样式名</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
+</div><div id="icon"><h1 id="tingle-icon">tingle-icon</h1>
+<p><a href="http://badge.fury.io/js/tingle-icon"><img src="https://badge.fury.io/js/tingle-icon.svg" alt="npm version"></a></p>
+<p>Icon图标展示，适用于移动端图标展示</p>
+<h2 id="props">Props</h2>
+<h3 id="id">id</h3>
+<p>描述：需要引用的SVG的ID标识
+类型：&#39;string&#39;
+必选：是</p>
+<p>示例：</p>
+<pre><code>&lt;Icon className=&quot;icon&quot; id=&quot;baby&quot;/&gt;
+</code></pre><h3 id="classname">className</h3>
+<p>描述：自定义样式名，默认为 &#39;tIcon&#39;
+类型：&#39;string&#39;
+必选：否</p>
+<p>示例：</p>
+<pre><code>&lt;Icon className=&quot;icon&quot; id=&quot;xxxx&quot;/&gt;
+</code></pre><blockquote>
 <p>注1: id的值默认情况下是根据SVG资源名称相对应的</p>
 </blockquote>
-</div><div id="slot"><h1 id="tingle-slot-npm-version-https-badge-fury-io-js-tingle-slot-svg-http-badge-fury-io-js-tingle-slot-">tingle-slot <a href="http://badge.fury.io/js/tingle-slot"><img src="https://badge.fury.io/js/tingle-slot.svg" alt="npm version"></a></h1>
+</div><div id="slot"><h1 id="tingle-slot">tingle-slot</h1>
+<p><a href="http://badge.fury.io/js/tingle-slot"><img src="https://badge.fury.io/js/tingle-slot.svg" alt="npm version"></a></p>
 <p>Slot 是老虎机滚轮选择器。</p>
+<h2 id="props">Props</h2>
+<p>Slot 对数据格式的要求比较苛刻，但这是必要的！为了方便用户的使用，提供了两个静态的 formatXxx 函数供用户使用，详见下面的 API。</p>
+<h3 id="classname">className</h3>
+<p>描述：自定义样式的 <code>class</code> 名称。
+类型：<code>string</code>
+必选：否</p>
+<p>示例：</p>
+<pre><code>&lt;Slot className=&quot;customClass&quot;&gt;&lt;/Slot&gt;
+</code></pre><h3 id="data">data</h3>
+<p>描述：数据。
+类型：<code>Array&lt;Array&lt;Object&gt;&gt;</code>
+必选：否</p>
+<blockquote>
+<p>data 是一个二维数组，第一维表示滚轮列，第二维表示各列中的选项。</p>
+</blockquote>
+<p>每个选项必须包括 text（显示的文字） 和 value（选项的值） 属性。典型的格式如下：</p>
+<p>示例：</p>
+<pre><code class="lang-js">[
+    [
+        {
+            text: &#39;江苏&#39;,
+            value: &#39;jiangsu&#39;
+        },
+        {
+            text: &#39;浙江&#39;,
+            value: &#39;zhejiang&#39;
+        }
+    ],
+    [
+        {
+            text: &#39;杭州&#39;,
+            value: &#39;hangzhou&#39;
+        },
+        {
+            text: &#39;宁波&#39;,
+            value: &#39;ningbo&#39;
+        }
+    ]
+]
+</code></pre>
+<h3 id="value">value</h3>
+<p>描述：选中数据。
+类型：<code>Array&lt;Object&gt;</code>
+必选：否</p>
+<blockquote>
+<p>value 是一个一维数组，分别表示每一列的选中值。</p>
+</blockquote>
+<p>数组中的元素一般为 data 中对应选项的引用，也可以通过 value 属性来和选项建立绑定。典型的格式如下：</p>
+<p>示例：</p>
+<pre><code class="lang-js">[
+    {
+        text: &#39;浙江&#39;,
+        value: &#39;zhejiang&#39;
+    },
+    {
+        text: &#39;杭州&#39;,
+        value: &#39;hangzhou&#39;
+    }
+]
+</code></pre>
+<h3 id="title">title</h3>
+<p>描述：弹出滚动选择器的标题。
+类型：<code>string</code>
+必选：否</p>
+<p>示例：</p>
+<pre><code class="lang-js">&lt;Slot title=&quot;标题&quot;&gt;&lt;/Slot&gt;
+</code></pre>
+<h3 id="confirmtext">confirmText</h3>
+<p>描述：确认文案。
+类型：<code>string</code>
+默认：<code>&#39;完成&#39;</code>
+必选：否</p>
+<p>示例：</p>
+<pre><code class="lang-js">&lt;Slot confirmText=&quot;完成&quot;&gt;&lt;/Slot&gt;
+</code></pre>
+<h3 id="canceltext">cancelText</h3>
+<p>描述：取消文案。
+类型：<code>string</code>
+默认：<code>&#39;取消&#39;</code>
+必选：否</p>
+<p>示例：</p>
+<pre><code class="lang-js">&lt;Slot cancelText=&quot;取消&quot;&gt;&lt;/Slot&gt;
+</code></pre>
+<h3 id="scrollmod">scrollMod</h3>
+<p>描述：数据替换后的滚动模式。
+类型：<code>function</code>
+默认：<code>&#39;reset&#39;</code>
+必选：否</p>
+<p>示例：</p>
+<pre><code class="lang-js">&lt;Slot scrollMod=&quot;reset&quot;&gt;&lt;/Slot&gt;
+</code></pre>
+<blockquote>
+<p>scrollMod 目前有两种模式：</p>
+</blockquote>
+<ul>
+<li><code>reset</code> 模式（默认），会直接替换列数据，并定位到第一个值</li>
+<li><code>keep</code> 模式，会尝试在新的列数据中查找旧列的已选中值，并定位到该值</li>
+</ul>
+<h3 id="onchange-value-column-index-">onChange(value, column, index)</h3>
+<p>描述：列选中变化触发的事件。
+类型：<code>function</code>
+必选：否</p>
+<p>示例：</p>
+<pre><code class="lang-js">&lt;Slot onChange={(value, column, index) =&gt; {
+    // value（当前选中值数组）, column（当前变更的列）, index（当前选中的项）
+    // DO SOMETHING
+}}&gt;&lt;/Slot&gt;
+</code></pre>
+<h3 id="onconfirm-value-">onConfirm(value)</h3>
+<p>描述：确认所有选中触发的事件。
+类型：<code>function</code>
+必选：否</p>
+<p>示例：</p>
+<pre><code class="lang-js">&lt;Slot onConfirm={(value) =&gt; {
+    // value（当前选中值数组）
+    // DO SOMETHING
+}}&gt;&lt;/Slot&gt;
+</code></pre>
+<h3 id="oncancel-">onCancel()</h3>
+<p>描述：取消当前选中触发的事件。
+类型：<code>function</code>
+必选：否</p>
+<p>示例：</p>
+<pre><code class="lang-js">&lt;Slot onCancel={() =&gt; {
+    // DO SOMETHING
+}}&gt;&lt;/Slot&gt;
+</code></pre>
+<h2 id="apis">APIs</h2>
+<h3 id="-show-">.show()</h3>
+<p>描述：显示选择器。</p>
+<p>示例：</p>
+<pre><code class="lang-js">slot.show();
+</code></pre>
+<h3 id="-hide-">.hide()</h3>
+<p>描述：隐藏选择器。</p>
+<p>示例：</p>
+<pre><code class="lang-js">slot.hide();
+</code></pre>
+<h3 id="slot-formatdatavalue-data-value-">Slot.formatDataValue(data[, value])</h3>
+<p>描述：<code>data</code> 和 <code>value</code> 的非标准格式兼容，返回标准格式的 { data, value }。</p>
+<p>示例：</p>
+<pre><code class="lang-js">t.setState(Slot.formatDataValue(xxData, xxValue));
+</code></pre>
+<ul>
+<li><p>data 格式兼容以下几种场景</p>
+<ul>
+<li><p>data 选项中如果 text 或 value 缺少任意一项，都会用另一项替代。</p>
+<pre><code class="lang-js">[
+    [
+        { text: &#39;江苏&#39; }, // =&gt; { text: &#39;江苏&#39;, value: &#39;江苏&#39; }
+        { value: &#39;浙江&#39; } // =&gt; { text: &#39;浙江&#39;, value: &#39;浙江&#39; }
+    ]
+]
+</code></pre>
+</li>
+<li><p>如果数组元素不是对象，那么 text 和 value 都会被赋值为元素本身。</p>
+<pre><code class="lang-js">[
+    [
+        &#39;江苏&#39;, // =&gt; { text: &#39;江苏&#39;, value: &#39;江苏&#39; }
+        &#39;浙江&#39;  // =&gt; { text: &#39;浙江&#39;, value: &#39;浙江&#39; }
+    ]
+]
+</code></pre>
+</li>
+<li><p>如果传入是一个一维数组，则自动包裹为二维数组。</p>
+<pre><code class="lang-js">[ &#39;江苏&#39;, &#39;浙江&#39; ] // =&gt; [ [ { text: &#39;江苏&#39;, value: &#39;江苏&#39; }, { text: &#39;浙江&#39;, value: &#39;浙江&#39; } ] ]
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>value 格式兼容以下场景</p>
+<ul>
+<li>数组元素不是对象。会对应到 value 是数组元素本身的选项。</li>
+<li>如果数组元素不能对应到任何选项，则默认对应到第一个选项。</li>
+</ul>
+</li>
+</ul>
+<h3 id="slot-formatcolumnvalue-columndata-columnvalue-">Slot.formatColumnValue(columnData[, columnValue])</h3>
+<p>描述：替换单列的 data 和 value 时使用，兼容规则同上。</p>
+<p><code>columnData</code> 列数据，一维数组。</p>
+<p><code>columnValue</code> 选中的选项。</p>
+<p>返回标准格式的 { columnData, columnValue }</p>
+<p>示例：</p>
+<pre><code class="lang-js">t.setState(Slot.formatColumnValue(xxData, xxValue));
+</code></pre>
 </div><div id="collection"><h1 id="tingle-collection-npm-version-https-badge-fury-io-js-tingle-collection-svg-http-badge-fury-io-js-tingle-collection-">tingle-collection <a href="http://badge.fury.io/js/tingle-collection"><img src="https://badge.fury.io/js/tingle-collection.svg" alt="npm version"></a></h1>
 <h2 id="props">Props</h2>
 <h2 id="demos">Demos</h2>
@@ -294,68 +455,9 @@ unitize();       // 0
 <li>在支持<code>hairline</code>显示的设备上自动优化显示成极细的线。</li>
 </ul>
 <p>效果预览：</p>
-<p><img src="https://gw.alicdn.com/tps/TB1efEEKFXXXXXLXFXXXXXXXXXX-347-574.png" alt=""></p>
-<h2 id="usage">Usage</h2>
-<p>首先引入<code>Group</code>，其中<code>Group</code>下面包含<code>Head</code>和<code>List</code>两个子组件。</p>
-<p>项目环境下，<code>Tingle</code>是全局变量：</p>
-<pre><code class="lang-js">// ES5
-var Group = Tingle.Group;
-// ES2015
-let {Group} = Tingle;
-</code></pre>
-<p>全局使用概览：</p>
-<pre><code class="lang-js">...
-render() {
-    return (&lt;Group&gt;
-        &lt;Group.Head&gt;title&lt;/Group.Head&gt;
-        &lt;Group.List&gt;
-            &lt;div&gt;content&lt;/div&gt;
-            &lt;div&gt;content&lt;/div&gt;
-        &lt;/Group.List&gt;
-    &lt;/Group&gt;);
-}
-</code></pre>
-<h2 id="group-list">Group.List</h2>
-<h4 id="classname">className</h4>
-<p>描述：自定义样式的<code>class</code>名称。<br>类型：<code>String</code><br>默认：<code>&#39;&#39;</code><br>必选：否</p>
-<p>示例：</p>
-<pre><code>&lt;Group&gt;
-    &lt;Group.List className=&quot;customClass&quot;&gt;...&lt;/Group.List&gt;
-&lt;/Group&gt;
-</code></pre><h4 id="lineindent">lineIndent</h4>
-<p>描述：配置间隔线的缩进值。<br>类型：<code>Number|String|Array</code>  </p>
-<ul>
-<li>Number：设置左缩进，默认追加<code>px</code>作为单位，如：<code>lineIndent={10}</code></li>
-<li>String：设置左缩进，自定义长度单位，如：<code>lineIndent={&#39;1rem&#39;}</code></li>
-<li>Array：设置左右缩进，数组成员的类型为<code>Number</code>或<code>String</code>，默认处理如上。如：<code>lineIndent={[10, 10]}</code></li>
-</ul>
-<p>默认：无<br>必选：否</p>
-<p>示例：</p>
-<pre><code class="lang-js">&lt;Group&gt;
-    &lt;Group.List lineIndent={10}&gt;...&lt;/Group.List&gt;
-&lt;/Group&gt;
-</code></pre>
-<h4 id="itemindent">itemIndent</h4>
-<p>描述：配置列表子元素的缩进值。<br>类型：<code>Number|String|Array</code>  </p>
-<ul>
-<li>Number：设置左缩进，默认追加<code>px</code>作为单位，如：<code>itemIndent={10}</code></li>
-<li>String：设置左缩进，自定义长度单位，如：<code>itemIndent={&#39;1rem&#39;}</code></li>
-<li>Array：设置左右缩进，数组成员的类型为<code>Number</code>或<code>String</code>，默认处理如上。如：<code>itemIndent={[10, 10]}</code></li>
-</ul>
-<p>默认：无<br>必选：否</p>
-<p>示例：</p>
-<pre><code class="lang-js">&lt;Group&gt;
-    &lt;Group.List itemIndent={[10, 10]}&gt;...&lt;/Group.List&gt;
-&lt;/Group&gt;
-</code></pre>
-<h2 id="todos">Todos</h2>
-<ul>
-<li>当子元素是null时</li>
-</ul>
 </div><div id="slide"><h1 id="slide-npm-version-https-badge-fury-io-js-tingle-slide-svg-http-badge-fury-io-js-tingle-slide-">Slide 轮播图 <a href="http://badge.fury.io/js/tingle-slide"><img src="https://badge.fury.io/js/tingle-slide.svg" alt="Npm version"></a></h1>
 <p><code>tingle-slide</code>是抽象的幻灯片容器</p>
-</div><div id="avatar"><h1 id="tingle-avatar">tingle-avatar</h1>
-<p><a href="http://badge.fury.io/js/tingle-avatar"><img src="https://badge.fury.io/js/tingle-avatar.svg" alt="npm version"></a></p>
+</div><div id="avatar"><h1 id="tingle-avatar-npm-version-https-badge-fury-io-js-tingle-avatar-svg-http-badge-fury-io-js-tingle-avatar-">tingle-avatar <a href="http://badge.fury.io/js/tingle-avatar"><img src="https://badge.fury.io/js/tingle-avatar.svg" alt="npm version"></a></h1>
 <p>  用于头像显示, 如果没有头像则根据名字随机生成一个带背景颜色的头像，如果没有名字则显示一个默认图片。可给人员或公司默认 logo 等场景使用。</p>
 <p>  头像生成规则如下：</p>
 <ol>

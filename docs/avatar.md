@@ -1,6 +1,4 @@
-# tingle-avatar
-
-[![npm version](https://badge.fury.io/js/tingle-avatar.svg)](http://badge.fury.io/js/tingle-avatar)
+# tingle-avatar [![npm version](https://badge.fury.io/js/tingle-avatar.svg)](http://badge.fury.io/js/tingle-avatar)
 
   用于头像显示, 如果没有头像则根据名字随机生成一个带背景颜色的头像，如果没有名字则显示一个默认图片。可给人员或公司默认 logo 等场景使用。
 
