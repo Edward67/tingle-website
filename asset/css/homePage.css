@@ -4,6 +4,7 @@ body {
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
+    font-family: 'SimHei';
 }
 ul {
     margin: 0;
